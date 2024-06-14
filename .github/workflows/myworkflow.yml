@@ -16,3 +16,23 @@ jobs:
         with:
           name: my-artifact
           path: path/to/artifact/world.txt
+
+  job2:
+    name: "download artifact"
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: my-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
+
+  job3:
+    name: "ls"
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls
+
+
+
